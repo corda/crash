@@ -135,7 +135,7 @@ public class SSHPlugin extends CRaSHPlugin<SSHPlugin> {
       File f = new File(serverKeyPath);
       String keyGen = getContext().getProperty(SSH_SERVER_KEYGEN);
       if (keyGen != null && keyGen.equals("true")) {
-        // This seems to provide PEM file generation/loading
+        // Provide PEM file generation/loading
         keyPairProvider = new BouncyCastleGeneratorHostKeyProvider(new File(serverKeyPath).toPath());
       } else if (f.exists() && f.isFile()) {
         try {

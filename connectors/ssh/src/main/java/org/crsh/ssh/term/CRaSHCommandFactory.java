@@ -37,12 +37,8 @@ public class CRaSHCommandFactory implements Factory<Command> {
     this.encoding = encoding;
   }
 
-  public Command create() {
-    return new CRaSHCommand(this);
-  }
-
   @Override
-  public Command get() {
+  public Command create() {
     return new CRaSHCommand(this);
   }
 }
