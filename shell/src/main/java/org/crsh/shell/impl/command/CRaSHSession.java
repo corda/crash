@@ -41,7 +41,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-class CRaSHSession extends HashMap<String, Object> implements Shell, Closeable, RuntimeContext, ShellSession {
+public class CRaSHSession extends HashMap<String, Object> implements Shell, Closeable, RuntimeContext, ShellSession {
 
   /** . */
   static final Logger log = Logger.getLogger(CRaSHSession.class.getName());
