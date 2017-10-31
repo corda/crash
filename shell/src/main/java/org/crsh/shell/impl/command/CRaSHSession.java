@@ -18,6 +18,7 @@
  */
 package org.crsh.shell.impl.command;
 
+import org.crsh.auth.AuthInfo;
 import org.crsh.cli.impl.completion.CompletionMatch;
 import org.crsh.lang.spi.Compiler;
 import org.crsh.lang.spi.Language;
@@ -54,16 +55,19 @@ class CRaSHSession extends HashMap<String, Object> implements Shell, Closeable, 
   /** . */
   final Principal user;
 
+  final AuthInfo authInfo;
+
   /** . */
   private Repl repl = ScriptRepl.getInstance();
 
-  CRaSHSession(final CRaSH crash, Principal user) {
+  CRaSHSession(final CRaSH crash, Principal user, AuthInfo authInfo) {
     // Set variable available to all scripts
     put("crash", crash);
 
     //
     this.crash = crash;
     this.user = user;
+    this.authInfo = authInfo;
 
     //
     ClassLoader previous = setCRaSHLoader();
