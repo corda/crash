@@ -92,6 +92,10 @@ public class CRaSHSession extends HashMap<String, Object> implements Shell, Clos
     this.repl = repl;
   }
 
+  public AuthInfo getAuthInfo() {
+    return authInfo;
+  }
+
   public Iterable<Map.Entry<String, String>> getCommands() {
     return crash.getCommands();
   }
