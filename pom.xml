@@ -88,6 +88,13 @@
 
   </properties>
 
+  <repositories>
+    <repository>
+      <id>jitpack.io</id>
+      <url>https://jitpack.io</url>
+    </repository>
+  </repositories>
+
   <dependencyManagement>
     <dependencies>
 
@@ -317,9 +324,9 @@
         <version>2.2.0</version>
       </dependency>
       <dependency>
-        <groupId>jline</groupId>
-        <artifactId>jline</artifactId>
-        <version>2.12</version>
+        <groupId>com.github.corda</groupId>
+        <artifactId>jline2</artifactId>
+        <version>c2c7c6b4d48a07fb0d944f808468ca1b0018486e</version>
       </dependency>
       <dependency>
         <groupId>commons-logging</groupId>
