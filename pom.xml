@@ -326,7 +326,7 @@
       <dependency>
         <groupId>com.github.corda</groupId>
         <artifactId>jline2</artifactId>
-        <version>c2c7c6b4d48a07fb0d944f808468ca1b0018486e</version>
+        <version>5ed980ec0c314d68c47b2481e19e7e3a3013f82f</version>
       </dependency>
       <dependency>
         <groupId>commons-logging</groupId>
