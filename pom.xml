@@ -3,7 +3,7 @@
   <groupId>org.crashub</groupId>
   <artifactId>crash.parent</artifactId>
   <packaging>pom</packaging>
-  <version>1.6.0-SNAPSHOT</version>
+  <version>810d2b774b85d4938be01b9b65e29e4fddbc450b</version>
 
   <parent>
     <groupId>org.sonatype.oss</groupId>
@@ -112,12 +112,12 @@
       <dependency>
         <groupId>org.crashub</groupId>
         <artifactId>crash.cli</artifactId>
-        <version>1.6.0-SNAPSHOT</version>
+        <version>810d2b774b85d4938be01b9b65e29e4fddbc450b</version>
       </dependency>
       <dependency>
         <groupId>org.crashub</groupId>
         <artifactId>crash.cli</artifactId>
-        <version>1.6.0-SNAPSHOT</version>
+        <version>810d2b774b85d4938be01b9b65e29e4fddbc450b</version>
         <classifier>sources</classifier>
       </dependency>
 
@@ -125,25 +125,25 @@
       <dependency>
         <groupId>org.crashub</groupId>
         <artifactId>crash.shell</artifactId>
-        <version>1.6.0-SNAPSHOT</version>
+        <version>810d2b774b85d4938be01b9b65e29e4fddbc450b</version>
         <type>jar</type>
       </dependency>
       <dependency>
         <groupId>org.crashub</groupId>
         <artifactId>crash.shell</artifactId>
-        <version>1.6.0-SNAPSHOT</version>
+        <version>810d2b774b85d4938be01b9b65e29e4fddbc450b</version>
         <type>test-jar</type>
       </dependency>
       <dependency>
         <groupId>org.crashub</groupId>
         <artifactId>crash.shell</artifactId>
-        <version>1.6.0-SNAPSHOT</version>
+        <version>810d2b774b85d4938be01b9b65e29e4fddbc450b</version>
         <classifier>sources</classifier>
       </dependency>
       <dependency>
         <groupId>org.crashub</groupId>
         <artifactId>crash.shell</artifactId>
-        <version>1.6.0-SNAPSHOT</version>
+        <version>810d2b774b85d4938be01b9b65e29e4fddbc450b</version>
         <classifier>standalone</classifier>
       </dependency>
 
@@ -151,18 +151,18 @@
       <dependency>
         <groupId>org.crashub</groupId>
         <artifactId>crash.connectors.telnet</artifactId>
-        <version>1.6.0-SNAPSHOT</version>
+        <version>810d2b774b85d4938be01b9b65e29e4fddbc450b</version>
       </dependency>
       <dependency>
         <groupId>org.crashub</groupId>
         <artifactId>crash.connectors.telnet</artifactId>
-        <version>1.6.0-SNAPSHOT</version>
+        <version>810d2b774b85d4938be01b9b65e29e4fddbc450b</version>
         <classifier>sources</classifier>
       </dependency>
       <dependency>
         <groupId>org.crashub</groupId>
         <artifactId>crash.connectors.telnet</artifactId>
-        <version>1.6.0-SNAPSHOT</version>
+        <version>810d2b774b85d4938be01b9b65e29e4fddbc450b</version>
         <classifier>standalone</classifier>
       </dependency>
 
@@ -170,18 +170,18 @@
       <dependency>
         <groupId>org.crashub</groupId>
         <artifactId>crash.connectors.ssh</artifactId>
-        <version>1.6.0-SNAPSHOT</version>
+        <version>810d2b774b85d4938be01b9b65e29e4fddbc450b</version>
       </dependency>
       <dependency>
         <groupId>org.crashub</groupId>
         <artifactId>crash.connectors.ssh</artifactId>
-        <version>1.6.0-SNAPSHOT</version>
+        <version>810d2b774b85d4938be01b9b65e29e4fddbc450b</version>
         <classifier>sources</classifier>
       </dependency>
       <dependency>
         <groupId>org.crashub</groupId>
         <artifactId>crash.connectors.ssh</artifactId>
-        <version>1.6.0-SNAPSHOT</version>
+        <version>810d2b774b85d4938be01b9b65e29e4fddbc450b</version>
         <classifier>standalone</classifier>
       </dependency>
 
@@ -189,12 +189,12 @@
       <dependency>
         <groupId>org.crashub</groupId>
         <artifactId>crash.connectors.web</artifactId>
-        <version>1.6.0-SNAPSHOT</version>
+        <version>810d2b774b85d4938be01b9b65e29e4fddbc450b</version>
       </dependency>
       <dependency>
         <groupId>org.crashub</groupId>
         <artifactId>crash.connectors.web</artifactId>
-        <version>1.6.0-SNAPSHOT</version>
+        <version>810d2b774b85d4938be01b9b65e29e4fddbc450b</version>
         <classifier>sources</classifier>
       </dependency>
 
@@ -202,12 +202,12 @@
       <dependency>
         <groupId>org.crashub</groupId>
         <artifactId>crash.embed.spring</artifactId>
-        <version>1.6.0-SNAPSHOT</version>
+        <version>810d2b774b85d4938be01b9b65e29e4fddbc450b</version>
       </dependency>
       <dependency>
         <groupId>org.crashub</groupId>
         <artifactId>crash.embed.spring</artifactId>
-        <version>1.6.0-SNAPSHOT</version>
+        <version>810d2b774b85d4938be01b9b65e29e4fddbc450b</version>
         <classifier>sources</classifier>
       </dependency>
 
@@ -215,32 +215,32 @@
       <dependency>
         <groupId>org.crashub</groupId>
         <artifactId>crash.packaging</artifactId>
-        <version>1.6.0-SNAPSHOT</version>
+        <version>810d2b774b85d4938be01b9b65e29e4fddbc450b</version>
       </dependency>
       <dependency>
         <groupId>org.crashub</groupId>
         <artifactId>crash.packaging</artifactId>
-        <version>1.6.0-SNAPSHOT</version>
+        <version>810d2b774b85d4938be01b9b65e29e4fddbc450b</version>
         <type>war</type>
       </dependency>
       <dependency>
         <groupId>org.crashub</groupId>
         <artifactId>crash.packaging</artifactId>
-        <version>1.6.0-SNAPSHOT</version>
+        <version>810d2b774b85d4938be01b9b65e29e4fddbc450b</version>
         <type>war</type>
         <classifier>spring</classifier>
       </dependency>
       <dependency>
         <groupId>org.crashub</groupId>
         <artifactId>crash.packaging</artifactId>
-        <version>1.6.0-SNAPSHOT</version>
+        <version>810d2b774b85d4938be01b9b65e29e4fddbc450b</version>
         <type>zip</type>
         <classifier>mule-app</classifier>
       </dependency>
       <dependency>
         <groupId>org.crashub</groupId>
         <artifactId>crash.packaging</artifactId>
-        <version>1.6.0-SNAPSHOT</version>
+        <version>810d2b774b85d4938be01b9b65e29e4fddbc450b</version>
         <type>tar.gz</type>
       </dependency>
 
@@ -276,7 +276,7 @@
       <dependency>
         <groupId>org.crashub</groupId>
         <artifactId>crash.doc.api</artifactId>
-        <version>1.6.0-SNAPSHOT</version>
+        <version>810d2b774b85d4938be01b9b65e29e4fddbc450b</version>
         <classifier>javadoc</classifier>
       </dependency>
 
@@ -284,13 +284,13 @@
       <dependency>
         <groupId>org.crashub</groupId>
         <artifactId>crash.doc.reference</artifactId>
-        <version>1.6.0-SNAPSHOT</version>
+        <version>810d2b774b85d4938be01b9b65e29e4fddbc450b</version>
         <type>pdf</type>
       </dependency>
       <dependency>
         <groupId>org.crashub</groupId>
         <artifactId>crash.doc.reference</artifactId>
-        <version>1.6.0-SNAPSHOT</version>
+        <version>810d2b774b85d4938be01b9b65e29e4fddbc450b</version>
         <classifier>html</classifier>
         <type>zip</type>
       </dependency>
@@ -299,13 +299,13 @@
       <dependency>
         <groupId>org.crashub</groupId>
         <artifactId>crash.doc.cookbook</artifactId>
-        <version>1.6.0-SNAPSHOT</version>
+        <version>810d2b774b85d4938be01b9b65e29e4fddbc450b</version>
         <type>pdf</type>
       </dependency>
       <dependency>
         <groupId>org.crashub</groupId>
         <artifactId>crash.doc.cookbook</artifactId>
-        <version>1.6.0-SNAPSHOT</version>
+        <version>810d2b774b85d4938be01b9b65e29e4fddbc450b</version>
         <classifier>html</classifier>
         <type>zip</type>
       </dependency>
@@ -618,11 +618,6 @@
           <version>1.6.0</version>
         </plugin>
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-gpg-plugin</artifactId>
-          <version>1.1</version>
-        </plugin>
-        <plugin>
           <groupId>com.github.github</groupId>
           <artifactId>site-maven-plugin</artifactId>
           <version>0.3</version>
@@ -700,11 +695,7 @@
           </executions>
         </plugin>
 
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-enforcer-plugin</artifactId>
-          <version>1.1</version>
-        </plugin>
+
 
       </plugins>
 
@@ -764,26 +755,6 @@
       <build>
         <plugins>
           <!-- Release with Java 6 -->
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-enforcer-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>enforce-java</id>
-                <goals>
-                  <goal>enforce</goal>
-                </goals>
-                <configuration>
-                  <rules>
-                    <requireJavaVersion>
-                      <message>You must release with Java 6!</message>
-                      <version>[1.6,1.8)</version>
-                    </requireJavaVersion>
-                  </rules>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
         </plugins>
       </build>
     </profile>
@@ -957,20 +928,6 @@
     <profile>
       <id>sign-artifacts</id>
       <build>
-        <plugins>
-          <!-- We want to sign the artifact, the POM, and all attached artifacts -->
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-gpg-plugin</artifactId>
-            <executions>
-              <execution>
-                <goals>
-                  <goal>sign</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
       </build>
     </profile>
 
