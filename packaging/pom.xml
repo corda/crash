@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <parent>
     <artifactId>crash.parent</artifactId>
-    <groupId>org.crashub</groupId>
+    <groupId>com.github.corda.crash</groupId>
     <version>810d2b774b85d4938be01b9b65e29e4fddbc450b</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
@@ -20,13 +20,13 @@
 
     <!-- Cmdline standalone -->
     <dependency>
-      <groupId>org.crashub</groupId>
+      <groupId>com.github.corda.crash</groupId>
       <artifactId>crash.cli</artifactId>
     </dependency>
 
     <!-- Core -->
     <dependency>
-      <groupId>org.crashub</groupId>
+      <groupId>com.github.corda.crash</groupId>
       <artifactId>crash.shell</artifactId>
     </dependency>
     <dependency>
@@ -40,19 +40,19 @@
 
     <!-- Standalone dependencies-->
     <dependency>
-      <groupId>org.crashub</groupId>
+      <groupId>com.github.corda.crash</groupId>
       <artifactId>crash.connectors.telnet</artifactId>
       <classifier>standalone</classifier>
     </dependency>
     <dependency>
-      <groupId>org.crashub</groupId>
+      <groupId>com.github.corda.crash</groupId>
       <artifactId>crash.connectors.ssh</artifactId>
       <classifier>standalone</classifier>
     </dependency>
 
     <!-- SSHD connector dependencies -->
     <dependency>
-      <groupId>org.crashub</groupId>
+      <groupId>com.github.corda.crash</groupId>
       <artifactId>crash.connectors.ssh</artifactId>
     </dependency>
     <dependency>
@@ -84,7 +84,7 @@
 
     <!-- Telnet connector dependencies -->
     <dependency>
-      <groupId>org.crashub</groupId>
+      <groupId>com.github.corda.crash</groupId>
       <artifactId>crash.connectors.telnet</artifactId>
     </dependency>
     <dependency>
@@ -94,7 +94,7 @@
 
     <!-- -->
     <dependency>
-      <groupId>org.crashub</groupId>
+      <groupId>com.github.corda.crash</groupId>
       <artifactId>crash.connectors.web</artifactId>
     </dependency>
     <dependency>
@@ -104,7 +104,7 @@
 
     <!-- Spring -->
     <dependency>
-      <groupId>org.crashub</groupId>
+      <groupId>com.github.corda.crash</groupId>
       <artifactId>crash.embed.spring</artifactId>
     </dependency>
     <dependency>
@@ -207,7 +207,7 @@
               <warRunDependencies>
                 <warRunDependency>
                   <dependency>
-                    <groupId>org.crashub</groupId>
+                    <groupId>com.github.corda.crash</groupId>
                     <artifactId>crash.packaging</artifactId>
                     <version>${project.version}</version>
                     <type>war</type>
@@ -229,7 +229,7 @@
               <warRunDependencies>
                 <warRunDependency>
                   <dependency>
-                    <groupId>org.crashub</groupId>
+                    <groupId>com.github.corda.crash</groupId>
                     <artifactId>crash.packaging</artifactId>
                     <version>${project.version}</version>
                     <classifier>spring</classifier>

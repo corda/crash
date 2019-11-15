@@ -36,15 +36,15 @@
       <outputDirectory>/crash</outputDirectory>
       <unpack>true</unpack>
       <includes>
-        <include>org.crashub:crash.packaging:tar.gz</include>
+        <include>com.github.corda.crash:crash.packaging:tar.gz</include>
       </includes>
     </dependencySet>
     <dependencySet>
       <outputDirectory>/crash/lib</outputDirectory>
       <includes>
-        <include>org.crashub:crash.plugins.mail</include>
+        <include>com.github.corda.crash:crash.plugins.mail</include>
         <include>javax.mail:mail</include>
-        <include>org.crashub:crash.plugins.cron</include>
+        <include>com.github.corda.crash:crash.plugins.cron</include>
         <include>it.sauronsoftware.cron4j:cron4j</include>
       </includes>
     </dependencySet>

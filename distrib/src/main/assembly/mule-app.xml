@@ -36,7 +36,7 @@
       <outputDirectory>/</outputDirectory>
       <outputFileNameMapping>crash-mule-app.zip</outputFileNameMapping>
       <includes>
-        <include>org.crashub:crash.packaging:zip:mule-app</include>
+        <include>com.github.corda.crash:crash.packaging:zip:mule-app</include>
       </includes>
     </dependencySet>
   </dependencySets>

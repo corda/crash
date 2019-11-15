@@ -1,6 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>org.crashub</groupId>
+  <groupId>com.github.corda.crash</groupId>
   <artifactId>crash.parent</artifactId>
   <packaging>pom</packaging>
   <version>810d2b774b85d4938be01b9b65e29e4fddbc450b</version>
@@ -110,12 +110,12 @@
       </dependency>
       <!-- Module cli -->
       <dependency>
-        <groupId>org.crashub</groupId>
+        <groupId>com.github.corda.crash</groupId>
         <artifactId>crash.cli</artifactId>
         <version>810d2b774b85d4938be01b9b65e29e4fddbc450b</version>
       </dependency>
       <dependency>
-        <groupId>org.crashub</groupId>
+        <groupId>com.github.corda.crash</groupId>
         <artifactId>crash.cli</artifactId>
         <version>810d2b774b85d4938be01b9b65e29e4fddbc450b</version>
         <classifier>sources</classifier>
@@ -123,25 +123,25 @@
 
       <!-- Module shell -->
       <dependency>
-        <groupId>org.crashub</groupId>
+        <groupId>com.github.corda.crash</groupId>
         <artifactId>crash.shell</artifactId>
         <version>810d2b774b85d4938be01b9b65e29e4fddbc450b</version>
         <type>jar</type>
       </dependency>
       <dependency>
-        <groupId>org.crashub</groupId>
+        <groupId>com.github.corda.crash</groupId>
         <artifactId>crash.shell</artifactId>
         <version>810d2b774b85d4938be01b9b65e29e4fddbc450b</version>
         <type>test-jar</type>
       </dependency>
       <dependency>
-        <groupId>org.crashub</groupId>
+        <groupId>com.github.corda.crash</groupId>
         <artifactId>crash.shell</artifactId>
         <version>810d2b774b85d4938be01b9b65e29e4fddbc450b</version>
         <classifier>sources</classifier>
       </dependency>
       <dependency>
-        <groupId>org.crashub</groupId>
+        <groupId>com.github.corda.crash</groupId>
         <artifactId>crash.shell</artifactId>
         <version>810d2b774b85d4938be01b9b65e29e4fddbc450b</version>
         <classifier>standalone</classifier>
@@ -149,18 +149,18 @@
 
       <!-- Module connector telnet -->
       <dependency>
-        <groupId>org.crashub</groupId>
+        <groupId>com.github.corda.crash</groupId>
         <artifactId>crash.connectors.telnet</artifactId>
         <version>810d2b774b85d4938be01b9b65e29e4fddbc450b</version>
       </dependency>
       <dependency>
-        <groupId>org.crashub</groupId>
+        <groupId>com.github.corda.crash</groupId>
         <artifactId>crash.connectors.telnet</artifactId>
         <version>810d2b774b85d4938be01b9b65e29e4fddbc450b</version>
         <classifier>sources</classifier>
       </dependency>
       <dependency>
-        <groupId>org.crashub</groupId>
+        <groupId>com.github.corda.crash</groupId>
         <artifactId>crash.connectors.telnet</artifactId>
         <version>810d2b774b85d4938be01b9b65e29e4fddbc450b</version>
         <classifier>standalone</classifier>
@@ -168,18 +168,18 @@
 
       <!-- Module connector ssh -->
       <dependency>
-        <groupId>org.crashub</groupId>
+        <groupId>com.github.corda.crash</groupId>
         <artifactId>crash.connectors.ssh</artifactId>
         <version>810d2b774b85d4938be01b9b65e29e4fddbc450b</version>
       </dependency>
       <dependency>
-        <groupId>org.crashub</groupId>
+        <groupId>com.github.corda.crash</groupId>
         <artifactId>crash.connectors.ssh</artifactId>
         <version>810d2b774b85d4938be01b9b65e29e4fddbc450b</version>
         <classifier>sources</classifier>
       </dependency>
       <dependency>
-        <groupId>org.crashub</groupId>
+        <groupId>com.github.corda.crash</groupId>
         <artifactId>crash.connectors.ssh</artifactId>
         <version>810d2b774b85d4938be01b9b65e29e4fddbc450b</version>
         <classifier>standalone</classifier>
@@ -187,12 +187,12 @@
 
       <!-- Module connector web -->
       <dependency>
-        <groupId>org.crashub</groupId>
+        <groupId>com.github.corda.crash</groupId>
         <artifactId>crash.connectors.web</artifactId>
         <version>810d2b774b85d4938be01b9b65e29e4fddbc450b</version>
       </dependency>
       <dependency>
-        <groupId>org.crashub</groupId>
+        <groupId>com.github.corda.crash</groupId>
         <artifactId>crash.connectors.web</artifactId>
         <version>810d2b774b85d4938be01b9b65e29e4fddbc450b</version>
         <classifier>sources</classifier>
@@ -200,12 +200,12 @@
 
       <!-- Module embed spring -->
       <dependency>
-        <groupId>org.crashub</groupId>
+        <groupId>com.github.corda.crash</groupId>
         <artifactId>crash.embed.spring</artifactId>
         <version>810d2b774b85d4938be01b9b65e29e4fddbc450b</version>
       </dependency>
       <dependency>
-        <groupId>org.crashub</groupId>
+        <groupId>com.github.corda.crash</groupId>
         <artifactId>crash.embed.spring</artifactId>
         <version>810d2b774b85d4938be01b9b65e29e4fddbc450b</version>
         <classifier>sources</classifier>
@@ -213,32 +213,32 @@
 
       <!-- Module packaging -->
       <dependency>
-        <groupId>org.crashub</groupId>
+        <groupId>com.github.corda.crash</groupId>
         <artifactId>crash.packaging</artifactId>
         <version>810d2b774b85d4938be01b9b65e29e4fddbc450b</version>
       </dependency>
       <dependency>
-        <groupId>org.crashub</groupId>
+        <groupId>com.github.corda.crash</groupId>
         <artifactId>crash.packaging</artifactId>
         <version>810d2b774b85d4938be01b9b65e29e4fddbc450b</version>
         <type>war</type>
       </dependency>
       <dependency>
-        <groupId>org.crashub</groupId>
+        <groupId>com.github.corda.crash</groupId>
         <artifactId>crash.packaging</artifactId>
         <version>810d2b774b85d4938be01b9b65e29e4fddbc450b</version>
         <type>war</type>
         <classifier>spring</classifier>
       </dependency>
       <dependency>
-        <groupId>org.crashub</groupId>
+        <groupId>com.github.corda.crash</groupId>
         <artifactId>crash.packaging</artifactId>
         <version>810d2b774b85d4938be01b9b65e29e4fddbc450b</version>
         <type>zip</type>
         <classifier>mule-app</classifier>
       </dependency>
       <dependency>
-        <groupId>org.crashub</groupId>
+        <groupId>com.github.corda.crash</groupId>
         <artifactId>crash.packaging</artifactId>
         <version>810d2b774b85d4938be01b9b65e29e4fddbc450b</version>
         <type>tar.gz</type>
@@ -274,7 +274,7 @@
 
       <!-- Module API documentation -->
       <dependency>
-        <groupId>org.crashub</groupId>
+        <groupId>com.github.corda.crash</groupId>
         <artifactId>crash.doc.api</artifactId>
         <version>810d2b774b85d4938be01b9b65e29e4fddbc450b</version>
         <classifier>javadoc</classifier>
@@ -282,13 +282,13 @@
 
       <!-- Module reference documentation -->
       <dependency>
-        <groupId>org.crashub</groupId>
+        <groupId>com.github.corda.crash</groupId>
         <artifactId>crash.doc.reference</artifactId>
         <version>810d2b774b85d4938be01b9b65e29e4fddbc450b</version>
         <type>pdf</type>
       </dependency>
       <dependency>
-        <groupId>org.crashub</groupId>
+        <groupId>com.github.corda.crash</groupId>
         <artifactId>crash.doc.reference</artifactId>
         <version>810d2b774b85d4938be01b9b65e29e4fddbc450b</version>
         <classifier>html</classifier>
@@ -297,13 +297,13 @@
 
       <!-- Module cookbook -->
       <dependency>
-        <groupId>org.crashub</groupId>
+        <groupId>com.github.corda.crash</groupId>
         <artifactId>crash.doc.cookbook</artifactId>
         <version>810d2b774b85d4938be01b9b65e29e4fddbc450b</version>
         <type>pdf</type>
       </dependency>
       <dependency>
-        <groupId>org.crashub</groupId>
+        <groupId>com.github.corda.crash</groupId>
         <artifactId>crash.doc.cookbook</artifactId>
         <version>810d2b774b85d4938be01b9b65e29e4fddbc450b</version>
         <classifier>html</classifier>

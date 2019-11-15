@@ -14,7 +14,7 @@
 
   <dependencies>
     <dependency>
-      <groupId>org.crashub</groupId>
+      <groupId>com.github.corda.crash</groupId>
       <artifactId>crash.shell</artifactId>
     </dependency>
     <dependency>
@@ -22,7 +22,7 @@
       <artifactId>mail</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.crashub</groupId>
+      <groupId>com.github.corda.crash</groupId>
       <artifactId>crash.shell</artifactId>
       <type>test-jar</type>
       <scope>test</scope>

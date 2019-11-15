@@ -41,18 +41,18 @@
         </excludes>
       </unpackOptions>
       <includes>
-        <include>org.crashub:crash.cli:jar:sources</include>
-        <include>org.crashub:crash.shell:jar:sources</include>
-        <include>org.crashub:crash.connectors.telnet:jar:sources</include>
-        <include>org.crashub:crash.connectors.ssh:jar:sources</include>
-        <include>org.crashub:crash.embed.spring:jar:sources</include>
+        <include>com.github.corda.crash:crash.cli:jar:sources</include>
+        <include>com.github.corda.crash:crash.shell:jar:sources</include>
+        <include>com.github.corda.crash:crash.connectors.telnet:jar:sources</include>
+        <include>com.github.corda.crash:crash.connectors.ssh:jar:sources</include>
+        <include>com.github.corda.crash:crash.embed.spring:jar:sources</include>
       </includes>
     </dependencySet>
     <dependencySet>
       <outputDirectory>/reference/html</outputDirectory>
       <unpack>true</unpack>
       <includes>
-        <include>org.crashub:crash.doc.reference:zip:html</include>
+        <include>com.github.corda.crash:crash.doc.reference:zip:html</include>
       </includes>
     </dependencySet>
 <!--
@@ -60,7 +60,7 @@
       <outputDirectory>/reference</outputDirectory>
       <outputFileNameMapping>crash-reference.pdf</outputFileNameMapping>
       <includes>
-        <include>org.crashub:crash.doc.reference:pdf</include>
+        <include>com.github.corda.crash:crash.doc.reference:pdf</include>
       </includes>
     </dependencySet>
 -->
@@ -68,14 +68,14 @@
       <outputDirectory>/api</outputDirectory>
       <unpack>true</unpack>
       <includes>
-        <include>org.crashub:crash.doc.api:jar:javadoc</include>
+        <include>com.github.corda.crash:crash.doc.api:jar:javadoc</include>
       </includes>
     </dependencySet>
     <dependencySet>
       <outputDirectory>/cookbook/html</outputDirectory>
       <unpack>true</unpack>
       <includes>
-        <include>org.crashub:crash.doc.cookbook:zip:html</include>
+        <include>com.github.corda.crash:crash.doc.cookbook:zip:html</include>
       </includes>
     </dependencySet>
 <!--
@@ -83,7 +83,7 @@
       <outputDirectory>/cookbook</outputDirectory>
       <outputFileNameMapping>crash-cookbook.pdf</outputFileNameMapping>
       <includes>
-        <include>org.crashub:crash.doc.cookbook:pdf</include>
+        <include>com.github.corda.crash:crash.doc.cookbook:pdf</include>
       </includes>
     </dependencySet>
 -->

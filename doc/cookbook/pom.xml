@@ -21,7 +21,7 @@
 
   <parent>
     <artifactId>crash.doc</artifactId>
-    <groupId>org.crashub</groupId>
+    <groupId>com.github.corda.crash</groupId>
     <version>810d2b774b85d4938be01b9b65e29e4fddbc450b</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>

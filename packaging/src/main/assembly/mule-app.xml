@@ -41,11 +41,11 @@
         <include>org.apache.mina:mina-core</include>
         <include>net.wimpi:telnetd-x</include>
         <include>org.apache.ivy:ivy</include>
-        <include>org.crashub:crash.cli</include>
-        <include>org.crashub:crash.shell</include>
-        <include>org.crashub:crash.connectors.telnet</include>
-        <include>org.crashub:crash.connectors.ssh</include>
-        <include>org.crashub:crash.embed.spring</include>
+        <include>com.github.corda.crash:crash.cli</include>
+        <include>com.github.corda.crash:crash.shell</include>
+        <include>com.github.corda.crash:crash.connectors.telnet</include>
+        <include>com.github.corda.crash:crash.connectors.ssh</include>
+        <include>com.github.corda.crash:crash.embed.spring</include>
       </includes>
       <excludes>
         <exclude>*:*:standalone</exclude>
@@ -64,9 +64,9 @@
       </unpackOptions>
       <outputDirectory>/classes/</outputDirectory>
       <includes>
-        <include>org.crashub:crash.shell</include>
-        <include>org.crashub:crash.connectors.telnet</include>
-        <include>org.crashub:crash.connectors.ssh</include>
+        <include>com.github.corda.crash:crash.shell</include>
+        <include>com.github.corda.crash:crash.connectors.telnet</include>
+        <include>com.github.corda.crash:crash.connectors.ssh</include>
       </includes>
     </dependencySet>
   </dependencySets>
