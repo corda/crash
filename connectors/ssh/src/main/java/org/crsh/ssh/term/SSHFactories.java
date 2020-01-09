@@ -48,8 +48,9 @@ public class SSHFactories {
                             BuiltinDHFactories.ecdhp521,
                             BuiltinDHFactories.ecdhp384,
                             BuiltinDHFactories.ecdhp256,
-                            BuiltinDHFactories.dhgex256,
-                            BuiltinDHFactories.dhg14_256
+                            BuiltinDHFactories.dhg14_256,
+                            BuiltinDHFactories.dhg16_512,
+                            BuiltinDHFactories.dhg18_512
                     ));
 
     private static final List<BuiltinMacs> MAC_PREFERENCE =
