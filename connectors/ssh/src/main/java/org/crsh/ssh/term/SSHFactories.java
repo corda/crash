@@ -31,7 +31,8 @@ public class SSHFactories {
                             BuiltinSignatures.nistp521,
                             BuiltinSignatures.ed25519,
                             BuiltinSignatures.rsaSHA512,
-                            BuiltinSignatures.rsaSHA256
+                            BuiltinSignatures.rsaSHA256,
+                            BuiltinSignatures.rsa
                     ));
 
     private static final List<BuiltinCiphers> CIPHER_PREFERENCE =
