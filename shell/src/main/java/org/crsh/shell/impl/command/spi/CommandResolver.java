@@ -33,7 +33,7 @@ public interface CommandResolver {
    * @return the known command names by this resolver, the returned map keys are the command names
    *         and the values are the corresponding one line description of the command
    */
-  Iterable<Map.Entry<String, String>> getDescriptions();
+  Iterable<Map.Entry<String, String>> getDescriptions(ShellSafety shellSafety);
 
   /**
    * Attempt to obtain a command. Null is returned when such command does not exist.

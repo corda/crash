@@ -26,32 +26,40 @@ public class UnsafeSafeModeCmdResolution {
         }
     }
 
-    static void addSafeHandlers(HashMap<String, Class<? extends BaseCommand>> safeCommands, boolean exitAllowed) {
+    // Adds safe dummy handlers for unsafe commands in the safe mode
+    static void addSafeHandlers(HashMap<String, Class<? extends BaseCommand>> safeCommandsHandlers, boolean exitAllowed, boolean manAllowed) {
         if (!exitAllowed) {
-            safeCommands.put("bye", Bye.class);
+            safeCommandsHandlers.put("bye", Bye.class);
         }
-        safeCommands.put("dashboard", Dashboard.class);
-        safeCommands.put("egrep", EGrep.class);
-        safeCommands.put("env", Env.class);
+        safeCommandsHandlers.put("dashboard", Dashboard.class);
+        safeCommandsHandlers.put("egrep", EGrep.class);
+        safeCommandsHandlers.put("env", Env.class);
         if (!exitAllowed) {
-            safeCommands.put("exit", Exit.class);
+            safeCommandsHandlers.put("exit", Exit.class);
         }
-        safeCommands.put("filter", Filter.class);
-        safeCommands.put("java", CJava.class);
-        safeCommands.put("jdbc", Jdbc.class);
-        safeCommands.put("jndi", Jndi.class);
-        safeCommands.put("jpa", Jpa.class);
-        safeCommands.put("jul", Jul.class);
-        safeCommands.put("jvm", Jvm.class);
-        safeCommands.put("less", Less.class);
-        safeCommands.put("man", CMan.class);
-        safeCommands.put("repl", CRepl.class);
-        safeCommands.put("shell", CShell.class);
-        safeCommands.put("sleep", Sleep.class);
-        safeCommands.put("sort", Sort.class);
-        safeCommands.put("system", CSystem.class);
-        safeCommands.put("thread", CThread.class);
+        safeCommandsHandlers.put("filter", Filter.class);
+        safeCommandsHandlers.put("java", CJava.class);
+        safeCommandsHandlers.put("jdbc", Jdbc.class);
+        safeCommandsHandlers.put("jndi", Jndi.class);
+        safeCommandsHandlers.put("jpa", Jpa.class);
+        safeCommandsHandlers.put("jul", Jul.class);
+        safeCommandsHandlers.put("jvm", Jvm.class);
+        safeCommandsHandlers.put("less", Less.class);
+        if (!manAllowed) {
+            addSafeHandlerForMan(safeCommandsHandlers);
+        }
+        safeCommandsHandlers.put("repl", CRepl.class);
+        safeCommandsHandlers.put("shell", CShell.class);
+        safeCommandsHandlers.put("sleep", Sleep.class);
+        safeCommandsHandlers.put("sort", Sort.class);
+        safeCommandsHandlers.put("system", CSystem.class);
+        safeCommandsHandlers.put("thread", CThread.class);
     }
+
+    static void addSafeHandlerForMan(HashMap<String, Class<? extends BaseCommand>> safeCommandsHandlers) {
+        safeCommandsHandlers.put("man", CMan.class);
+    }
+
     public static class Bye extends UnSafeCommand { public String getCommandName() { return "bye"; } }
     public static class Dashboard extends UnSafeCommand { public String getCommandName() { return "dashboard"; } }
     public static class EGrep extends UnSafeCommand { public String getCommandName() { return "egrep"; } }
