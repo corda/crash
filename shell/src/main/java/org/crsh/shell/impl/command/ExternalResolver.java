@@ -34,7 +34,7 @@ public class ExternalResolver implements CommandResolver
 	}
 
 	@Override
-	public Iterable<Map.Entry<String, String>> getDescriptions()
+	public Iterable<Map.Entry<String, String>> getDescriptions(ShellSafety shellSafety)
 	{
 		return descriptions.entrySet();
 	}

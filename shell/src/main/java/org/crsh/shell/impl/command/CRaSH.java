@@ -29,11 +29,10 @@ import org.crsh.shell.impl.command.spi.CommandException;
 import org.crsh.shell.impl.command.spi.CommandResolver;
 import org.crsh.plugin.PluginContext;
 import org.crsh.shell.impl.command.system.SystemResolver;
+import org.crsh.shell.impl.command.system.UnsafeSafeModeCmdResolution;
 
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 
 public class CRaSH {
 
@@ -43,9 +42,13 @@ public class CRaSH {
   /** . */
   final LanguageCommandResolver scriptResolver;
 
+  final LanguageCommandResolver restrictedScriptResolver;
+
   /** . */
   private final ArrayList<CommandResolver> safeResolvers = new ArrayList<CommandResolver>();
+  private final ArrayList<CommandResolver> safeResolversWithoutManCommand = new ArrayList<CommandResolver>();
   private final ArrayList<CommandResolver> semiSafeResolvers = new ArrayList<CommandResolver>();
+  private final ArrayList<CommandResolver> semiSafeResolversWithoutManCommand = new ArrayList<CommandResolver>();
   private final ArrayList<CommandResolver> unSafeResolvers = new ArrayList<CommandResolver>();
 
   /** . */
@@ -60,7 +63,8 @@ public class CRaSH {
 
   public CRaSH(PluginContext context) throws NullPointerException {
     this.context = context;
-    this.scriptResolver = new LanguageCommandResolver(context);
+    this.scriptResolver = new LanguageCommandResolver(context, false);
+    this.restrictedScriptResolver = new LanguageCommandResolver(context, true);
 
     // Add the resolver plugins
     for (CommandResolver resolver : context.getPlugins(CommandResolver.class)) {
@@ -77,8 +81,15 @@ public class CRaSH {
     unSafeResolvers.add(ExternalResolver.INSTANCE);
     safeResolvers.add(SystemResolver.SAFE_INSTANCE);
     safeResolvers.add(ExternalResolver.INSTANCE);
+    safeResolvers.add(restrictedScriptResolver);
     semiSafeResolvers.add(SystemResolver.SEMI_SAFE_INSTANCE);
     semiSafeResolvers.add(ExternalResolver.INSTANCE);
+    semiSafeResolvers.add(restrictedScriptResolver);
+    safeResolversWithoutManCommand.add(SystemResolver.SAFE_INSTANCE_WITHOUT_MAN);
+    safeResolversWithoutManCommand.add(ExternalResolver.INSTANCE);
+    semiSafeResolversWithoutManCommand.add(SystemResolver.SEMI_SAFE_INSTANCE_WITHOUT_MAN);
+    semiSafeResolversWithoutManCommand.add(ExternalResolver.INSTANCE);
+
   }
 
   public CRaSHSession createSession(Principal user, AuthInfo authInfo, ShellSafety shellSafety) {
@@ -105,6 +116,17 @@ public class CRaSH {
   public Command<?> getCommand(String name) throws CommandException, NullPointerException {
     return getCommandSafetyCheck(name, new ShellSafety());
   }
+
+  public Command<?> getCommandForMan(String name) throws CommandException, NullPointerException {
+    ShellSafety shellSafety = new ShellSafety();
+
+    if (shellSafety.isSafeShell() && isCommandUnsafe(name)) {
+      return null;
+    }
+
+    return getCommandSafetyCheck(name, shellSafety);
+  }
+
   public Command<?> getCommandSafetyCheck(String name, ShellSafety shellSafety) throws CommandException, NullPointerException {
     if (name == null) {
       throw new NullPointerException("No null name accepted");
@@ -112,7 +134,8 @@ public class CRaSH {
 
     boolean safe = shellSafety.isSafeShell();
     boolean permitExit = shellSafety.permitExit();
-    ArrayList<CommandResolver> resolvers = safe ? (permitExit ? semiSafeResolvers : safeResolvers) : unSafeResolvers;
+    boolean isManAllowed = shellSafety.isAllowManCommand();
+    ArrayList<CommandResolver> resolvers = safe ? (permitExit ? (isManAllowed ? semiSafeResolvers : semiSafeResolversWithoutManCommand) : (isManAllowed ? safeResolvers : safeResolversWithoutManCommand)) : unSafeResolvers;
 
     for (int i = 0;i < resolvers.size();i++) {
       Command<?> command = resolvers.get(i).resolveCommand(name, shellSafety);
@@ -130,13 +153,23 @@ public class CRaSH {
   public Iterable<Map.Entry<String, String>> getCommandsSafetyCheck(ShellSafety shellSafety) {
     boolean safe = shellSafety.isSafeShell();
     boolean permitExit = shellSafety.permitExit();
-    ArrayList<CommandResolver> resolvers = safe ? (permitExit ? semiSafeResolvers : safeResolvers) : unSafeResolvers;
+    boolean isManAllowed = shellSafety.isAllowManCommand();
+    ArrayList<CommandResolver> resolvers = safe ? (permitExit ? (isManAllowed ? semiSafeResolvers : semiSafeResolversWithoutManCommand) : (isManAllowed ? safeResolvers : safeResolversWithoutManCommand)) : unSafeResolvers;
     LinkedHashMap<String, String> names = new LinkedHashMap<String, String>();
     for (int i = 0;i < resolvers.size();i++) {
-      for (Map.Entry<String, String> entry : resolvers.get(i).getDescriptions()) {
+      for (Map.Entry<String, String> entry : resolvers.get(i).getDescriptions(shellSafety)) {
         names.put(entry.getKey(), entry.getValue());
       }
     }
     return names.entrySet();
+  }
+
+  private boolean isCommandUnsafe(String command) {
+    ArrayList<String> unsafeCommandNames = new ArrayList<String>(Arrays.asList("bye", "dashboard","egrep", "env", "exit",
+            "filter", "java", "jdbc", "jndi", "jpa",
+            "jul", "jvm", "less", "repl",
+            "shell", "sleep", "sort", "system","thread"));
+
+    return unsafeCommandNames.contains(command);
   }
 }

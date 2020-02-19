@@ -6,6 +6,7 @@ public class ShellSafety {
     private boolean internal = false;
     private boolean sshMode = false;
     private boolean allowExitInSafeMode = false;
+    private boolean allowManCommand = false;
 
     public ShellSafety() {
     }
@@ -16,6 +17,7 @@ public class ShellSafety {
         internal = safetyMode.contains("INTERNAL");
         sshMode = safetyMode.contains("SSH");
         allowExitInSafeMode = safetyMode.contains("EXIT");
+        allowManCommand = safetyMode.contains("MAN");
     }
 
     public String toSafeString() {
@@ -25,6 +27,7 @@ public class ShellSafety {
         if (internal) { ret += "|INTERNAL"; }
         if (sshMode) { ret += "|SSH"; }
         if (allowExitInSafeMode) { ret += "|EXIT"; }
+        if (allowManCommand) { ret += "|MAN"; }
         return ret;
     }
 
@@ -52,6 +55,8 @@ public class ShellSafety {
         return allowExitInSafeMode;
     }
 
+    public boolean isAllowManCommand() { return allowManCommand; }
+
     public void setSafeShell(boolean safeShell) {
         this.safeShell = safeShell;
     }
@@ -70,6 +75,10 @@ public class ShellSafety {
 
     public void setAllowExitInSafeMode(boolean exit) {
         this.allowExitInSafeMode = exit;
+    }
+
+    public void setAllowManCommand(boolean allowMan) {
+        this.allowManCommand = allowMan;
     }
 
     public boolean permitExit() {

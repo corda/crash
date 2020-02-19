@@ -44,59 +44,75 @@ import java.util.Map;
 public class SystemResolver implements CommandResolver {
 
   /** . */
-  public static final SystemResolver UNSAFE_INSTANCE = new SystemResolver(false, true);
-  public static final SystemResolver SAFE_INSTANCE = new SystemResolver(true, false);
-  public static final SystemResolver SEMI_SAFE_INSTANCE = new SystemResolver(true, true);
+  public static final SystemResolver UNSAFE_INSTANCE = new SystemResolver(false, true, true);
+  public static final SystemResolver SAFE_INSTANCE = new SystemResolver(true, false, true);
+  public static final SystemResolver SAFE_INSTANCE_WITHOUT_MAN = new SystemResolver(true, false, false);
+  public static final SystemResolver SEMI_SAFE_INSTANCE = new SystemResolver(true, true, true);
+  public static final SystemResolver SEMI_SAFE_INSTANCE_WITHOUT_MAN = new SystemResolver(true, true, false);
 
   /** . */
   private static final HashMap<String, Class<? extends BaseCommand>> unsafeCommands = new HashMap<String, Class<? extends BaseCommand>>();
   private static final HashMap<String, Class<? extends BaseCommand>> safeCommands = new HashMap<String, Class<? extends BaseCommand>>();
+  private static final HashMap<String, Class<? extends BaseCommand>> safeCommandsWithoutMan = new HashMap<String, Class<? extends BaseCommand>>();
   private static final HashMap<String, Class<? extends BaseCommand>> semiSafeCommands = new HashMap<String, Class<? extends BaseCommand>>();
+  private static final HashMap<String, Class<? extends BaseCommand>> semiSafeCommandsWithoutMan = new HashMap<String, Class<? extends BaseCommand>>();
 
   /** . */
   private static final HashMap<String, String> unsafeDescriptions = new HashMap<String, String>();
   private static final HashMap<String, String> safeDescriptions = new HashMap<String, String>();
+  private static final HashMap<String, String> safeDescriptionsWithoutMan = new HashMap<String, String>();
   private static final HashMap<String, String> semiSafeDescriptions = new HashMap<String, String>();
+  private static final HashMap<String, String> semiSafeDescriptionsWithoutMan = new HashMap<String, String>();
 
   static {
     unsafeCommands.put("help", help.class);
     unsafeCommands.put("repl", repl.class);
+
     unsafeDescriptions.put("help", "provides basic help (all commands).");
     unsafeDescriptions.put("repl", "list the repl or change the current repl");
-
     unsafeDescriptions.put("exit", "Exits.");
     unsafeDescriptions.put("bye", "Exits, same as exit.");
 
     // Add handlers for commands such that the user gets a suitable message if they try to run in safe mode.
-    UnsafeSafeModeCmdResolution.addSafeHandlers(safeCommands, false);
-    UnsafeSafeModeCmdResolution.addSafeHandlers(semiSafeCommands, true);
+    UnsafeSafeModeCmdResolution.addSafeHandlers(safeCommands, false, true);
+    UnsafeSafeModeCmdResolution.addSafeHandlers(safeCommandsWithoutMan, false, false);
+    UnsafeSafeModeCmdResolution.addSafeHandlers(semiSafeCommands, true, true);
+    UnsafeSafeModeCmdResolution.addSafeHandlers(semiSafeCommandsWithoutMan, true, false);
 
     safeCommands.put("help", help.class);
     safeDescriptions.put("help", "provides basic help (safe mode commands).");
+    safeCommandsWithoutMan.put("help", help.class);
+    safeDescriptionsWithoutMan.put("help", "provides basic help (safe mode commands).");
 
     semiSafeCommands.put("help", help.class);
     semiSafeDescriptions.put("help", "provides basic help (safe mode commands).");
     semiSafeDescriptions.put("exit", "Exits (currently permitted in safe mode shell).");
     semiSafeDescriptions.put("bye", "Exits (currently permitted in safe mode shell), same as exit.");
+    semiSafeCommandsWithoutMan.put("help", help.class);
+    semiSafeDescriptionsWithoutMan.put("help", "provides basic help (safe mode commands).");
+    semiSafeDescriptionsWithoutMan.put("exit", "Exits (currently permitted in safe mode shell).");
+    semiSafeDescriptionsWithoutMan.put("bye", "Exits (currently permitted in safe mode shell), same as exit.");
   }
 
   private final boolean safeInstance;
   private final boolean allowExit;
+  private final boolean allowMan;
 
-  private SystemResolver(boolean safe, boolean allowExit) {
+  private SystemResolver(boolean safe, boolean allowExit, boolean allowMan) {
     this.safeInstance = safe;
     this.allowExit = allowExit; // Ignored in unsafe mode as exit is allowed
+    this.allowMan = allowMan; // Ignored in unsafe mode as man is allowed
   }
 
   @Override
-  public Iterable<Map.Entry<String, String>> getDescriptions() {
-    return safeInstance ? (allowExit ? semiSafeDescriptions.entrySet() : safeDescriptions.entrySet()) : unsafeDescriptions.entrySet();
+  public Iterable<Map.Entry<String, String>> getDescriptions(ShellSafety shellSafety) {
+    return safeInstance ? (allowExit ? (allowMan ? semiSafeDescriptions.entrySet() : semiSafeDescriptionsWithoutMan.entrySet()) : (allowMan ? safeDescriptions.entrySet() : safeDescriptionsWithoutMan.entrySet())) : unsafeDescriptions.entrySet();
   }
 
   @Override
   public Command<?> resolveCommand(String name, ShellSafety shellSafety) throws CommandException, NullPointerException {
     final Class<? extends BaseCommand> systemCommand = safeInstance
-            ? (allowExit ? semiSafeCommands.get(name) : safeCommands.get(name))
+            ? (allowExit ? (allowMan ? semiSafeCommands.get(name) : semiSafeCommandsWithoutMan.get(name)) : (allowMan ? safeCommands.get(name) : safeCommandsWithoutMan.get(name)))
             : unsafeCommands.get(name);
     if (systemCommand != null) {
       return createCommand(systemCommand, shellSafety).getCommand();

@@ -34,6 +34,7 @@ import org.crsh.vfs.Resource;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -52,7 +53,9 @@ public class LanguageCommandResolver implements CommandResolver {
   /** . */
   final PluginContext context;
 
-  public LanguageCommandResolver(PluginContext context) {
+  final boolean isRestricted;
+
+  public LanguageCommandResolver(PluginContext context, boolean isRestricted) {
 
     //
     activeCompilers.put("script", ScriptCompiler.getInstance());
@@ -70,6 +73,7 @@ public class LanguageCommandResolver implements CommandResolver {
     }
 
     this.context = context;
+    this.isRestricted = isRestricted;
   }
 
   public Compiler getCompiler(String name) {
@@ -77,7 +81,7 @@ public class LanguageCommandResolver implements CommandResolver {
   }
 
   @Override
-  public Iterable<Map.Entry<String, String>> getDescriptions() {
+  public Iterable<Map.Entry<String, String>> getDescriptions(ShellSafety shellSafety) {
     LinkedHashMap<String, String> commands = new LinkedHashMap<String, String>();
     for (String resourceName : context.listResources(ResourceKind.COMMAND)) {
       int index = resourceName.indexOf('.');
@@ -85,8 +89,10 @@ public class LanguageCommandResolver implements CommandResolver {
       String ext = resourceName.substring(index + 1);
       if (activeCompilers.containsKey(ext)) {
         try {
-          CommandResolution resolution = resolveCommand2(name);
-          commands.put(name, resolution.getDescription());
+          CommandResolution resolution = resolveCommand2(name, shellSafety);
+          if (resolution != null) {
+            commands.put(name, resolution.getDescription());
+          }
         }
         catch (CommandException e) {
           //
@@ -98,11 +104,15 @@ public class LanguageCommandResolver implements CommandResolver {
 
   @Override
   public Command<?> resolveCommand(String name, ShellSafety shellSafety) throws CommandException, NullPointerException {
-    CommandResolution resolution = resolveCommand2(name);
+    CommandResolution resolution = resolveCommand2(name, shellSafety);
     return resolution != null ? resolution.getCommand() : null;
   }
 
-  private CommandResolution resolveCommand2(String name) throws CommandException, NullPointerException {
+  private CommandResolution resolveCommand2(String name, ShellSafety shellSafety) throws CommandException, NullPointerException {
+    if (isRestricted && !isCommandAllowed(name, shellSafety)) {
+      return null;
+    }
+
     for (Compiler manager : activeCompilers.values()) {
       for (String ext : manager.getExtensions()) {
         Iterable<Resource> resources = context.loadResources(name + "." + ext, ResourceKind.COMMAND);
@@ -115,6 +125,14 @@ public class LanguageCommandResolver implements CommandResolver {
       }
     }
     return null;
+  }
+
+  private boolean isCommandAllowed(String name, ShellSafety shellSafety) {
+    if (name.equals("man") && shellSafety.isAllowManCommand()) {
+      return true;
+    }
+
+    return false;
   }
 
   private CommandResolution resolveCommand(org.crsh.lang.spi.Compiler manager, String name, Resource script) throws CommandException {
