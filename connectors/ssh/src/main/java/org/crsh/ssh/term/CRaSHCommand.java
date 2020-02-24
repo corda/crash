@@ -28,6 +28,7 @@ import org.apache.sshd.server.Environment;
 import org.crsh.console.jline.JLineProcessor;
 import org.crsh.shell.Shell;
 import org.crsh.auth.AuthInfo;
+import org.crsh.shell.impl.command.system.SystemResolver;
 import org.crsh.util.Utils;
 
 import java.io.IOException;
@@ -116,6 +117,7 @@ public class CRaSHCommand extends AbstractCommand implements Runnable, Terminal 
       shellSafety.setInternal(isInternalSSH());
       shellSafety.setSSH(true);
       shellSafety.setStandAlone(isStandAloneSSH());
+      ShellSafetyFactory.registerShellSafetyForThread(shellSafety);
       Shell shell = factory.shellFactory.create(user, authInfo, shellSafety);
       ConsoleReader reader = new ConsoleReader(in, out, this) {
         @Override

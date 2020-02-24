@@ -7,6 +7,7 @@ public class ShellSafety {
     private boolean sshMode = false;
     private boolean allowExitInSafeMode = false;
     private boolean allowManCommand = false;
+    private boolean isDefault = true;
 
     public ShellSafety() {
     }
@@ -18,6 +19,7 @@ public class ShellSafety {
         sshMode = safetyMode.contains("SSH");
         allowExitInSafeMode = safetyMode.contains("EXIT");
         allowManCommand = safetyMode.contains("MAN");
+        isDefault = safetyMode.contains("DEFAULT");
     }
 
     public String toSafeString() {
@@ -28,11 +30,16 @@ public class ShellSafety {
         if (sshMode) { ret += "|SSH"; }
         if (allowExitInSafeMode) { ret += "|EXIT"; }
         if (allowManCommand) { ret += "|MAN"; }
+        if (isDefault) { ret += "|DEFAULT"; }
         return ret;
     }
 
     public String toString() {
         return toSafeString();
+    }
+
+    public boolean isDefault() {
+        return isDefault;
     }
 
     public boolean isSafeShell() {
@@ -57,28 +64,38 @@ public class ShellSafety {
 
     public boolean isAllowManCommand() { return allowManCommand; }
 
+    public void setDefault(boolean isDefault) {
+        this.isDefault = isDefault;
+    }
+
     public void setSafeShell(boolean safeShell) {
         this.safeShell = safeShell;
+        this.isDefault = false;
     }
 
     public void setStandAlone(boolean standAlone) {
         this.standAlone = standAlone;
+        this.isDefault = false;
     }
 
     public void setInternal(boolean internal) {
         this.internal = internal;
+        this.isDefault = false;
     }
 
     public void setSSH(boolean sshMode) {
         this.sshMode = sshMode;
+        this.isDefault = false;
     }
 
     public void setAllowExitInSafeMode(boolean exit) {
         this.allowExitInSafeMode = exit;
+        this.isDefault = false;
     }
 
     public void setAllowManCommand(boolean allowMan) {
         this.allowManCommand = allowMan;
+        this.isDefault = false;
     }
 
     public boolean permitExit() {

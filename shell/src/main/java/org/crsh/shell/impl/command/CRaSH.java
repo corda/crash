@@ -52,6 +52,21 @@ public class CRaSH {
   private final ArrayList<CommandResolver> semiSafeResolversWithoutManCommand = new ArrayList<CommandResolver>();
   private final ArrayList<CommandResolver> unSafeResolvers = new ArrayList<CommandResolver>();
 
+  static ShellSafety subthreadSafety = null;
+  static Object subthreadLock = new Object();
+
+  static ShellSafety getSubthreadSafety() {
+    synchronized (subthreadLock) {
+      return (subthreadSafety != null) ? subthreadSafety : ShellSafetyFactory.getCurrentThreadShellSafety();
+    }
+  }
+
+  static void setSubthreadSafety(ShellSafety shellSafety) {
+    synchronized (subthreadLock) {
+      subthreadSafety = shellSafety;
+    }
+  }
+
   /** . */
   final ArrayList<Language> langs = new ArrayList<Language>();
 
@@ -119,8 +134,7 @@ public class CRaSH {
   }
 
   public Command<?> getCommandForMan(String name) throws CommandException, NullPointerException {
-    ShellSafety shellSafety = new ShellSafety();
-
+    ShellSafety shellSafety = ShellSafetyFactory.getCurrentThreadShellSafety();
     if (shellSafety.isSafeShell() && isCommandUnsafe(name)) {
       return null;
     }
@@ -136,8 +150,17 @@ public class CRaSH {
     boolean safe = shellSafety.isSafeShell();
     boolean permitExit = shellSafety.permitExit();
     boolean isManAllowed = shellSafety.isAllowManCommand();
+
+    if (shellSafety.isDefault()) {
+      shellSafety = getSubthreadSafety();
+      ShellSafetyFactory.registerShellSafetyForThread(shellSafety);
+    } else {
+      setSubthreadSafety(shellSafety);
+    }
+    
     ArrayList<CommandResolver> resolvers = safe ? (permitExit ? (isManAllowed ? semiSafeResolvers : semiSafeResolversWithoutManCommand) : (isManAllowed ? safeResolvers : safeResolversWithoutManCommand)) : unSafeResolvers;
 
+    ShellSafetyFactory.registerShellSafetyForThread(shellSafety);
     for (int i = 0;i < resolvers.size();i++) {
       Command<?> command = resolvers.get(i).resolveCommand(name, shellSafety);
       if (command != null) {

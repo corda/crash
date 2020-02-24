@@ -15,6 +15,7 @@ public class ShellSafetyFactory {
 
         ShellSafety ret = new ShellSafety();
         ret.setSafeShell(false);
+        ret.setDefault(true);
         return ret;
     }
 

@@ -54,7 +54,7 @@ public class CustomCommandResolverTestCase extends AbstractShellTestCase {
     }
 
     @Override
-    public Iterable<Map.Entry<String, String>> getDescriptions() {
+    public Iterable<Map.Entry<String, String>> getDescriptions(ShellSafety shellSafety) {
       return Collections.singletonMap("mycommand", "my command").entrySet();
     }
 

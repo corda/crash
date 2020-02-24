@@ -75,12 +75,7 @@ public class help extends BaseCommand {
       }
     }
 
-    String safeStr = safeShell ? "SAFE-" : "UNSAFE-";
-    String sshStr = sshMode ? "SSH-" : "";
-    String saStr = standAlone ? "Standalone-" : "";
-    String intStr = internal ? "Internal-" : "";
-    String pref = "[" + safeStr + saStr + intStr + sshStr + "Shell]: ";
-    context.provide(new LabelElement(pref + "Try one of these commands with the -h or --help switch:\n"));
+    context.provide(new LabelElement("Try one of these commands with the -h or --help switch:\n"));
     context.provide(table);
   }
 }
