@@ -84,7 +84,6 @@ public class help extends BaseCommand {
     String pref = "[" + safeStr + saStr + intStr + sshStr + manStr + "Shell]: ";
     context.provide(new LabelElement(pref + "Try one of these commands with the -h or --help switch:\n"));
 
-    context.provide(new LabelElement("Try one of these commands with the -h or --help switch:\n"));
     context.provide(table);
   }
 }
