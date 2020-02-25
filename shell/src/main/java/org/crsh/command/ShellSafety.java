@@ -98,10 +98,6 @@ public class ShellSafety {
         this.isDefault = false;
     }
 
-    public void setAllowManCommand(boolean allowMan) {
-        this.allowManCommand = allowMan;
-    }
-
     public boolean permitExit() {
         return !isSafeShell() || !isInternal() || isSshMode() || isAllowExitInSafeMode();
     }

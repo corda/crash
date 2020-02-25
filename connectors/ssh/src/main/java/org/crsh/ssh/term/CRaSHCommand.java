@@ -216,7 +216,16 @@ public class CRaSHCommand extends AbstractCommand implements Runnable, Terminal 
 
   }
 
-  public static void setUserInfo(Set<String> users, Set<String> manUsersSet, boolean internalSSHShell, boolean standaloneSSHShell) {
+  public static void setUserInfo(Set<String> users, boolean internalSSHShell, boolean standaloneSSHShell) {
+    synchronized (userInfoLock) {
+      unsafeUsers = users;
+      manUsers = null;
+      isInternalSSHConnection = internalSSHShell;
+      isStandAloneSSHConnection = standaloneSSHShell;
+    }
+  }
+
+  public static void setUserInfoWithManUsers(Set<String> users, Set<String> manUsersSet, boolean internalSSHShell, boolean standaloneSSHShell) {
     synchronized (userInfoLock) {
       unsafeUsers = users;
       manUsers = manUsersSet;
