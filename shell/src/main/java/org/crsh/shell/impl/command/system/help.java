@@ -44,6 +44,7 @@ public class help extends BaseCommand {
     boolean standAlone = shellSafety.isStandAlone();
     boolean internal = shellSafety.isInternal();
     boolean sshMode = shellSafety.isSshMode();
+    boolean manAllowed = shellSafety.isAllowManCommand();
 
     TableElement table = new TableElement().rightCellPadding(1);
     table.row(
@@ -74,6 +75,14 @@ public class help extends BaseCommand {
         //
       }
     }
+
+    String safeStr = safeShell ? "SAFE-" : "UNSAFE-";
+    String sshStr = sshMode ? "SSH-" : "";
+    String saStr = standAlone ? "Standalone-" : "";
+    String intStr = internal ? "Internal-" : "";
+    String manStr = manAllowed ? "ManAllowed-" : "";
+    String pref = "[" + safeStr + saStr + intStr + sshStr + manStr + "Shell]: ";
+    context.provide(new LabelElement(pref + "Try one of these commands with the -h or --help switch:\n"));
 
     context.provide(new LabelElement("Try one of these commands with the -h or --help switch:\n"));
     context.provide(table);
