@@ -3,7 +3,7 @@
   <groupId>org.crashub</groupId>
   <artifactId>crash.parent</artifactId>
   <packaging>pom</packaging>
-  <version>1.7.4-SNAPSHOT</version>
+  <version>TEST-0.0.0-SNAPSHOT</version>
   <!-- To update project version run the following:
     mvn versions:set -DnewVersion=<new version>
     mvn versions:commit # Necessary to remove the backup file pom.xml
@@ -106,12 +106,12 @@
   <dependencyManagement>
     <dependencies>
 
-      <dependency>
+      <!-- <dependency>
         <groupId>javax.servlet</groupId>
         <artifactId>javax.servlet-api</artifactId>
         <version>3.0.1</version>
         <scope>provided</scope>
-      </dependency>
+      </dependency> -->
       <!-- Module cli -->
       <dependency>
         <groupId>org.crashub</groupId>
@@ -708,6 +708,33 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-enforcer-plugin</artifactId>
           <version>1.1</version>
+        </plugin>
+
+        <plugin>
+          <groupId>org.jfrog.buildinfo</groupId>
+          <artifactId>artifactory-maven-plugin</artifactId>
+          <version>2.2.1.</version>
+          <executions>
+            <execution>
+              <id>build-info</id>
+              <goals>
+                <goal>publish</goal>
+              </goals>
+              <configuration>
+                <!-- <deployProperties>
+                  <zip.deployed>true</zip.deployed>
+                  <zip.type>docs</zip.type>
+                </deployProperties> -->
+                <publisher>
+                  <contextUrl>https://software.r3.com/artifactory</contextUrl>
+                   <username>${env.CORDA_ARTIFACTORY_USERNAME}</username>
+                   <password>${env.CORDA_ARTIFACTORY_PASSWORD}</password>
+                  <repoKey>corda-dependencies</repoKey>
+                  <snapshotRepoKey>corda-dependencies-dev</snapshotRepoKey>
+                </publisher>
+              </configuration>
+            </execution>
+          </executions>
         </plugin>
 
       </plugins>
