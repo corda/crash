@@ -71,7 +71,7 @@ pipeline {
                 expression { return isMainBranch() }
             }
             steps {
-                sh "mvn deploy -s settings.xml -DskipTests"
+                sh "mvn deploy -B -s settings.xml -DskipTests"
             }
         }
 
@@ -80,7 +80,7 @@ pipeline {
                 expression { return isReleaseTag() }
             }
             steps {
-                sh "mvn deploy -s settings.xml -DskipTests"
+                sh "mvn deploy -B -s settings.xml -DskipTests"
             }
         }
     }
