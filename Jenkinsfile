@@ -20,7 +20,6 @@ pipeline {
         buildDiscarder(logRotator(daysToKeepStr: '14', artifactDaysToKeepStr: '14'))
     }
 
-
     tools {
         maven "maven"
     }
@@ -91,5 +90,6 @@ def isReleaseTag() {
     return (env.TAG_NAME =~ /^release-.*$/)
 }
 
-def isMainBranch() { //temp change to master later
-    return (env.BRANCH_NAME =~ /^ronanb\/*/) }
+def isMainBranch() {
+    return (env.BRANCH_NAME =~ /^master$/)
+}
