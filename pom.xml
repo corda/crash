@@ -863,7 +863,7 @@
                 <execution>
                   <id>default-test</id>
                   <configuration>
-                    <skip>true</skip>
+                    <skip>false</skip>
                   </configuration>
                 </execution>
               </executions>
