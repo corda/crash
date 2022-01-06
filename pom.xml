@@ -3,7 +3,7 @@
   <groupId>org.crashub</groupId>
   <artifactId>crash.parent</artifactId>
   <packaging>pom</packaging>
-    <version>1.7.4-SNAPSHOT</version>
+  <version>1.7.4-SNAPSHOT</version>
   <!-- To update project version run the following:
     mvn versions:set -DnewVersion=<new version>
     mvn versions:commit # Necessary to remove the backup file pom.xml
@@ -106,12 +106,12 @@
   <dependencyManagement>
     <dependencies>
 
-      <!-- <dependency>
+      <dependency>
         <groupId>javax.servlet</groupId>
         <artifactId>javax.servlet-api</artifactId>
         <version>3.0.1</version>
         <scope>provided</scope>
-      </dependency> -->
+      </dependency> 
       <!-- Module cli -->
       <dependency>
         <groupId>org.crashub</groupId>
