@@ -111,7 +111,7 @@
         <artifactId>javax.servlet-api</artifactId>
         <version>3.0.1</version>
         <scope>provided</scope>
-      </dependency> 
+      </dependency>
       <!-- Module cli -->
       <dependency>
         <groupId>org.crashub</groupId>
