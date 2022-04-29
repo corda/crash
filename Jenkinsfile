@@ -30,10 +30,6 @@ pipeline {
                 defaultValue: false)
     }
 
-    triggers {
-        pollSCM "* * * * *"
-    }
-
     environment {
         ARTIFACTORY_CREDENTIALS = credentials('artifactory-credentials')
         CORDA_ARTIFACTORY_USERNAME = "${env.ARTIFACTORY_CREDENTIALS_USR}"
