@@ -20,13 +20,13 @@ package org.crsh.ssh.term;
 
 import org.apache.sshd.server.command.Command;
 import org.apache.sshd.server.ExitCallback;
-import org.apache.sshd.server.SessionAware;
+import org.apache.sshd.server.session.ServerSessionAware;
 import org.apache.sshd.server.session.ServerSession;
 
 import java.io.InputStream;
 import java.io.OutputStream;
 
-public abstract class AbstractCommand implements Command, SessionAware {
+public abstract class AbstractCommand implements Command, ServerSessionAware {
 
   /** . */
   protected InputStream in;
