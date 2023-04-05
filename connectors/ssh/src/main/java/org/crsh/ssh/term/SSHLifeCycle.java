@@ -18,6 +18,7 @@
  */
 package org.crsh.ssh.term;
 
+import org.apache.sshd.core.CoreModuleProperties;
 import org.apache.sshd.server.SshServer;
 import org.apache.sshd.common.keyprovider.KeyPairProvider;
 import org.apache.sshd.common.session.Session;
@@ -138,12 +139,11 @@ public class SSHLifeCycle {
       SshServer server = SshServer.setUpDefaultServer();
       server.setPort(port);
 
-      // TODO() - find the constant definitions of the following property names.
       if (this.idleTimeout > 0) {
-        server.getProperties().put("idle-timeout", String.valueOf(this.idleTimeout));
+        server.getProperties().put(CoreModuleProperties.IDLE_TIMEOUT.getName(), String.valueOf(this.idleTimeout));
       }
       if (this.authTimeout > 0) {
-        server.getProperties().put("auth-timeout", String.valueOf(this.authTimeout));
+        server.getProperties().put(CoreModuleProperties.AUTH_TIMEOUT.getName(), String.valueOf(this.authTimeout));
       }
 
       server.setShellFactory(new CRaSHCommandFactory(factory, encoding, context));
