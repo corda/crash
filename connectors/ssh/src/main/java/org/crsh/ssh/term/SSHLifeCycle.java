@@ -20,9 +20,7 @@ package org.crsh.ssh.term;
 
 import org.apache.sshd.server.SshServer;
 import org.apache.sshd.common.keyprovider.KeyPairProvider;
-import org.apache.sshd.common.NamedFactory;
 import org.apache.sshd.common.session.Session;
-import org.apache.sshd.server.command.Command;
 import org.apache.sshd.server.auth.password.PasswordAuthenticator;
 import org.apache.sshd.server.auth.password.PasswordChangeRequiredException;
 import org.apache.sshd.server.session.ServerSession;

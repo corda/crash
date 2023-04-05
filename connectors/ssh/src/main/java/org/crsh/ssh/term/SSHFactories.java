@@ -1,7 +1,6 @@
 package org.crsh.ssh.term;
 
 import org.apache.sshd.common.NamedFactory;
-import org.apache.sshd.common.NamedResource;
 import org.apache.sshd.common.cipher.BuiltinCiphers;
 import org.apache.sshd.common.cipher.Cipher;
 import org.apache.sshd.common.compression.BuiltinCompressions;
