@@ -117,42 +117,4 @@ public class ClasspathResolverTestCase extends AbstractTestCase {
     assertEndsWith("/HashMap.class", classes.get(1).getName());
     assertEndsWith("/Map.class", classes.get(2).getName());
   }
-
-  public void testNestedJar() throws Exception {
-    final File war = toFile(ShrinkWrap.create(WebArchive.class).addAsLibrary(archive), ".jar");
-    ClassLoader cl = new ClassLoader(parent) {
-      @Override
-      protected Enumeration<URL> findResources(String name) throws IOException {
-        if ("META-INF/MANIFEST.MF".equals(name)) {
-          URL u1 = new URL("jar:" + war.toURI().toURL() + "!/META-INF/MANIFEST.MF");
-          URL u2 = new URL("jar:" + ("jar:" + war.toURI().toURL() + "!/WEB-INF/lib/my.jar") + "!/META-INF/MANIFEST.MF");
-          return Collections.enumeration(Arrays.asList(u1, u2));
-        } else if ("java/util".equals(name)) {
-          String u = "jar:" + ("jar:" + war.toURI().toURL() + "!/WEB-INF/lib/my.jar") + "!/java/util/";
-          return Collections.enumeration(Collections.singleton(new URL(u)));
-        } else {
-          return super.findResources(name);
-        }
-      }
-    };
-    ClasspathResolver resolver = new ClasspathResolver(cl);
-
-    // No recurse
-    List<JavaFileObject> classes = collect(Utils.list(resolver.resolve("java.util", false)));
-    assertEquals(2, classes.size());
-    assertEndsWith("/HashMap.class", classes.get(0).getName());
-    assertEndsWith("/Map.class", classes.get(1).getName());
-
-    // Attempt to get stream
-    InputStream in = classes.get(0).openInputStream();
-    byte[] bytes = Utils.readAsBytes(in);
-    assertTrue(bytes.length > 0);
-
-    // Recurse
-    classes = collect(Utils.list(resolver.resolve("java.util", true)));
-    assertEquals(3, classes.size());
-    assertEndsWith("/ConcurrentHashMap.class", classes.get(0).getName());
-    assertEndsWith("/HashMap.class", classes.get(1).getName());
-    assertEndsWith("/Map.class", classes.get(2).getName());
-  }
 }

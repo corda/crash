@@ -19,8 +19,7 @@
 
 package org.crsh.ssh.term.subsystem;
 
-import org.apache.sshd.common.NamedFactory;
-import org.apache.sshd.server.command.Command;
+import org.apache.sshd.server.subsystem.SubsystemFactory;
 import org.crsh.plugin.CRaSHPlugin;
 
 import java.util.List;
@@ -32,6 +31,6 @@ public abstract class SubsystemFactoryPlugin extends CRaSHPlugin<SubsystemFactor
     return this;
   }
 
-  public abstract NamedFactory<Command> getFactory();
+  public abstract SubsystemFactory getFactory();
 
 }

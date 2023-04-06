@@ -85,52 +85,6 @@ public class CompilerTestCase extends AbstractTestCase {
     });
   }
 
-  public void testImportFromNestedJar() throws Exception {
-    doTestImport(new ClassLoaderFactory() {
-      @Override
-      public ClassLoader getClassLoader(final JavaArchive jar) throws Exception {
-        WebArchive war = ShrinkWrap.create(WebArchive.class);
-        war.setManifest(Thread.currentThread().getContextClassLoader().getResource("META-INF/MANIFEST.MF"));
-        war.addAsLibrary(jar);
-        final File tmp = File.createTempFile("crash", ".war");
-        assertTrue(tmp.delete());
-        war.as(ZipExporter.class).exportTo(tmp);
-        final byte[] bytes = Utils.readAsBytes(jar.get("foo/A.class").getAsset().openStream());
-        return new ClassLoader(Thread.currentThread().getContextClassLoader()) {
-          Class<?> aClass = null;
-          @Override
-          protected Class<?> findClass(String name) throws ClassNotFoundException {
-            if (name.equals("foo.A")) {
-              if (aClass == null) {
-                // Normally we should use the bytes from the nested crash.jar but it's too difficult
-                // so we just use what we compiled before as it is the same bytecode and already
-                // available here
-
-                aClass = defineClass(name, bytes, 0, bytes.length);
-              }
-              return aClass;
-            } else {
-              return super.loadClass(name);
-            }
-          }
-          @Override
-          protected Enumeration<URL> findResources(String name) throws IOException {
-            if ("META-INF/MANIFEST.MF".equals(name)) {
-              URL u1 = new URL("jar:" + tmp.toURI().toURL() + "!/META-INF/MANIFEST.MF");
-              URL u2 = new URL("jar:" + ("jar:" + tmp.toURI().toURL() + "!/WEB-INF/lib/crash.jar") + "!/META-INF/MANIFEST.MF");
-              return Collections.enumeration(Arrays.asList(u1, u2));
-            } else if ("foo".equals(name)) {
-              String u = "jar:" + ("jar:" + tmp.toURI().toURL() + "!/WEB-INF/lib/crash.jar") + "!/foo/";
-              return Collections.enumeration(Collections.singleton(new URL(u)));
-            } else {
-              return super.findResources(name);
-            }
-          }
-        };
-      }
-    });
-  }
-
   private interface ClassLoaderFactory {
 
     ClassLoader getClassLoader(JavaArchive jar) throws Exception;

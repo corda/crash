@@ -159,7 +159,7 @@ public class SSHLifeCycle {
       //
       ArrayList<SubsystemFactory> namedFactoryList = new ArrayList<>(0);
       for (SubsystemFactoryPlugin plugin : context.getPlugins(SubsystemFactoryPlugin.class)) {
-        namedFactoryList.add((SubsystemFactory)plugin.getFactory());
+        namedFactoryList.add(plugin.getFactory());
       }
       server.setSubsystemFactories(namedFactoryList);
 

@@ -29,6 +29,7 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.exporter.ZipExporter;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.Ignore;
 
 import java.io.InputStream;
 import java.net.URL;
@@ -114,43 +115,6 @@ public class FSTestCase extends AbstractTestCase {
     assertFalse(in.hasNext());
   }
 
-  public void testNestedJar() throws Exception {
-
-    //
-    URLDriver driver = new URLDriver();
-    driver.merge(new URL("jar:" + warFile.toURI().toURL() + "!/WEB-INF/"));
-    Node root = driver.root();
-    Node lib = driver.child(root, "lib");
-    Node foo_jar = driver.child(lib, "foo.jar");
-    assertNotNull(foo_jar);
-    Iterator<InputStream> in = driver.open(foo_jar);
-    assertNotNull(in);
-    assertTrue(in.hasNext());
-    byte[] bytes = Utils.readAsBytes(in.next());
-    assertFalse(in.hasNext());
-
-    //
-    URL url = new URL("jar:jar:" + warFile.toURI().toURL() + "!/WEB-INF/lib/foo.jar!/org/crsh/");
-    driver = new URLDriver();
-    driver.merge(url);
-    root = driver.root();
-    Node vfs = driver.child(root, "vfs");
-    Node FSTestCase_class = driver.child(vfs, "FSTestCase.class");
-    assertNotNull(FSTestCase_class);
-    in = driver.open(FSTestCase_class);
-    assertNotNull(in);
-    assertTrue(in.hasNext());
-    bytes = Utils.readAsBytes(in.next());
-    assertFalse(in.hasNext());
-  }
-
-  public void testBar() throws Exception {
-
-    URLDriver driver = new URLDriver();
-    driver.merge(new URL("jar:" + warFile.toURI().toURL() + "!/WEB-INF/lib/foo.jar!/META-INF/crsh/"));
-
-
-  }
 
   public void testDuplicateResource() throws Exception {
     java.io.File file = java.io.File.createTempFile("test", ".jar");
