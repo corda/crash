@@ -54,7 +54,7 @@ public abstract class AbstractTelnetTestCase extends Assert {
   private boolean running;
 
   /** . */
-  private static final AtomicInteger PORTS = new AtomicInteger(5000);
+  private static final AtomicInteger PORTS = new AtomicInteger(10000);
 
   /** . */
   private static final int CLIENT_CONNECT_RETRY_LIMIT = 5;
