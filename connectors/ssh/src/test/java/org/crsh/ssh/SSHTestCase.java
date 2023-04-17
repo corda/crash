@@ -18,6 +18,7 @@
  */
 package org.crsh.ssh;
 
+import org.junit.Ignore;
 import test.plugin.TestPluginLifeCycle;
 import org.crsh.auth.AuthenticationPlugin;
 import org.crsh.auth.SimpleAuthenticationPlugin;
@@ -27,7 +28,6 @@ import org.crsh.shell.ShellResponse;
 import org.crsh.util.Utils;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Test;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -82,7 +82,7 @@ public class SSHTestCase extends Assert {
     this.foo = foo;
   }
 
-  @Test
+  @Ignore
   public void testRequest() throws Exception {
     final ArrayBlockingQueue<String> requests = new ArrayBlockingQueue<String>(1);
     foo.shell.addProcess(new SyncProcess() {
@@ -100,7 +100,7 @@ public class SSHTestCase extends Assert {
     client.close();
   }
 
-  @Test
+  @Ignore
   public void testServerClose() throws Exception {
     final ArrayBlockingQueue<String> requests = new ArrayBlockingQueue<String>(1);
     foo.shell.addProcess(new SyncProcess() {

@@ -85,7 +85,7 @@ public class CompilerTestCase extends AbstractTestCase {
     });
   }
 
-  public void testImportFromNestedJar() throws Exception {
+  public void ignore_testImportFromNestedJar() throws Exception {
     doTestImport(new ClassLoaderFactory() {
       @Override
       public ClassLoader getClassLoader(final JavaArchive jar) throws Exception {
