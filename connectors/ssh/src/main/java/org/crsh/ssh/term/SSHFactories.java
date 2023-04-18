@@ -7,7 +7,7 @@ import org.apache.sshd.common.compression.BuiltinCompressions;
 import org.apache.sshd.common.compression.Compression;
 import org.apache.sshd.common.compression.CompressionFactory;
 import org.apache.sshd.common.kex.BuiltinDHFactories;
-import org.apache.sshd.common.kex.KeyExchange;
+import org.apache.sshd.common.kex.KeyExchangeFactory;
 import org.apache.sshd.common.mac.BuiltinMacs;
 import org.apache.sshd.common.mac.Mac;
 import org.apache.sshd.common.signature.BuiltinSignatures;
@@ -67,23 +67,27 @@ public class SSHFactories {
                             BuiltinCompressions.none
                     ));
 
+    @SuppressWarnings({ "unchecked", "rawtypes" }) // safe due to the hierarchy
     public static List<NamedFactory<Signature>> setUpSignatureFactories() {
-        return NamedFactory.setUpBuiltinFactories(false, SIGNATURE_PREFERENCE);
+        return (List)NamedFactory.setUpBuiltinFactories(false, SIGNATURE_PREFERENCE);
     }
 
+    @SuppressWarnings({ "unchecked", "rawtypes" }) // safe due to the hierarchy
     public static List<NamedFactory<Cipher>> setUpCipherFactories() {
-        return NamedFactory.setUpBuiltinFactories(false, CIPHER_PREFERENCE);
+        return (List)NamedFactory.setUpBuiltinFactories(false, CIPHER_PREFERENCE);
     }
 
-    public static List<NamedFactory<KeyExchange>> setUpKeyExchangeFactories() {
+    public static List<KeyExchangeFactory> setUpKeyExchangeFactories() {
         return NamedFactory.setUpTransformedFactories(false, KEX_PREFERENCE, ServerBuilder.DH2KEX);
     }
 
+    @SuppressWarnings({ "unchecked", "rawtypes" }) // safe due to the hierarchy
     public static List<NamedFactory<Mac>> setUpMacFactories() {
-        return NamedFactory.setUpBuiltinFactories(false, MAC_PREFERENCE);
+        return (List)NamedFactory.setUpBuiltinFactories(false, MAC_PREFERENCE);
     }
 
+    @SuppressWarnings({ "unchecked", "rawtypes" }) // safe due to the hierarchy
     public static List<NamedFactory<Compression>> setUpCompressionFactories() {
-        return NamedFactory.setUpBuiltinFactories(false, COMPRESSION_PREFERENCE);
+        return (List)NamedFactory.setUpBuiltinFactories(false, COMPRESSION_PREFERENCE);
     }
 }

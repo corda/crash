@@ -18,6 +18,7 @@
  */
 package org.crsh.ssh.term;
 
+import org.apache.sshd.core.CoreModuleProperties;
 import org.apache.sshd.server.SshServer;
 import org.apache.sshd.common.keyprovider.KeyPairProvider;
 import org.apache.sshd.common.NamedFactory;
@@ -27,6 +28,7 @@ import org.apache.sshd.server.auth.password.PasswordAuthenticator;
 import org.apache.sshd.server.ServerFactoryManager;
 import org.apache.sshd.server.auth.password.PasswordChangeRequiredException;
 import org.apache.sshd.server.session.ServerSession;
+import org.apache.sshd.server.subsystem.SubsystemFactory;
 import org.crsh.plugin.PluginContext;
 import org.crsh.auth.AuthenticationPlugin;
 import org.crsh.shell.ShellFactory;
@@ -131,6 +133,7 @@ public class SSHLifeCycle {
     return keyPairProvider;
   }
 
+  @SuppressWarnings({ "unchecked", "rawtypes" }) // safe due to the hierarchy
   public void init() {
     try {
       ShellFactory factory = context.getPlugin(ShellFactory.class);
@@ -140,10 +143,10 @@ public class SSHLifeCycle {
       server.setPort(port);
 
       if (this.idleTimeout > 0) {
-        server.getProperties().put(ServerFactoryManager.IDLE_TIMEOUT, String.valueOf(this.idleTimeout));
+        server.getProperties().put(CoreModuleProperties.IDLE_TIMEOUT.getName(), String.valueOf(this.idleTimeout));
       }
       if (this.authTimeout > 0) {
-        server.getProperties().put(ServerFactoryManager.AUTH_TIMEOUT, String.valueOf(this.authTimeout));
+        server.getProperties().put(CoreModuleProperties.AUTH_TIMEOUT.getName(), String.valueOf(this.authTimeout));
       }
 
       server.setShellFactory(new CRaSHCommandFactory(factory, encoding, context));
@@ -157,7 +160,7 @@ public class SSHLifeCycle {
       server.setCompressionFactories(SSHFactories.setUpCompressionFactories());
 
       //
-      ArrayList<NamedFactory<Command>> namedFactoryList = new ArrayList<NamedFactory<Command>>(0);
+      ArrayList<SubsystemFactory> namedFactoryList = new ArrayList<>(0);
       for (SubsystemFactoryPlugin plugin : context.getPlugins(SubsystemFactoryPlugin.class)) {
         namedFactoryList.add(plugin.getFactory());
       }
