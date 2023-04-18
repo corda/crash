@@ -35,6 +35,7 @@ pipeline {
         CORDA_ARTIFACTORY_USERNAME = "${env.ARTIFACTORY_CREDENTIALS_USR}"
         CORDA_ARTIFACTORY_PASSWORD = "${env.ARTIFACTORY_CREDENTIALS_PSW}"
         JAVA_HOME = "/usr/lib/jvm/java-1.8.0-amazon-corretto"
+        SNYK_API_TOKEN = credentials('c4-os-snyk-api-token-secret')
     }
 
     stages {
@@ -43,6 +44,15 @@ pipeline {
             steps {
                 sh "mvn -B install -DskipTests"
 
+            }
+        }
+
+        stage('Snyk Security') {
+            // when {
+            //     expression { isMainBranch() }
+            // }
+            steps {
+                snykSecurityScan(env.SNYK_API_KEY, "--all-projects --configuration-matching='^runtimeClasspath\$' --prune-repeated-subdependencies --debug --target-reference='${env.BRANCH_NAME}' --project-tags=Branch='${env.BRANCH_NAME.replaceAll("[^0-9|a-z|A-Z]+","_")}' ")
             }
         }
         
