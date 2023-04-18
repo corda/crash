@@ -49,7 +49,7 @@ pipeline {
 
         stage('Snyk Security') {
             when {
-                expression { isMainBranch() }
+                expression { return isMainBranch() }
             }
             steps {
                 snykSecurityScan(env.SNYK_TOKEN, "--maven-aggregate-project --configuration-matching='^runtimeClasspath\$' --prune-repeated-subdependencies --debug --target-reference='${env.BRANCH_NAME}' --project-tags=Branch='${env.BRANCH_NAME.replaceAll("[^0-9|a-z|A-Z]+","_")}' ", false, true)
