@@ -52,7 +52,7 @@ pipeline {
             //     expression { isMainBranch() }
             // }
             steps {
-                snykSecurityScan(env.SNYK_API_KEY, "--all-projects --configuration-matching='^runtimeClasspath\$' --prune-repeated-subdependencies --debug --target-reference='${env.BRANCH_NAME}' --project-tags=Branch='${env.BRANCH_NAME.replaceAll("[^0-9|a-z|A-Z]+","_")}' ", false, true)
+                snykSecurityScan(env.SNYK_API_TOKEN, "--all-projects --configuration-matching='^runtimeClasspath\$' --prune-repeated-subdependencies --debug --target-reference='${env.BRANCH_NAME}' --project-tags=Branch='${env.BRANCH_NAME.replaceAll("[^0-9|a-z|A-Z]+","_")}' ", false, true)
             }
         }
         
