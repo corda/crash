@@ -31,11 +31,11 @@
     </dependency>
     <dependency>
       <groupId>org.bouncycastle</groupId>
-      <artifactId>bcprov-jdk15on</artifactId>
+      <artifactId>bcprov-lts8on</artifactId>
     </dependency>
     <dependency>
       <groupId>org.bouncycastle</groupId>
-      <artifactId>bcpkix-jdk15on</artifactId>
+      <artifactId>bcpkix-lts8on</artifactId>
     </dependency>
     <dependency>
       <groupId>org.apache.mina</groupId>
@@ -127,5 +127,4 @@
       </build>
     </profile>
   </profiles>
-
 </project>
