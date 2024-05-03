@@ -102,10 +102,6 @@
       <url>https://jitpack.io</url>
     </repository>
     <repository>
-        <id>snapshot-repo</id>
-        <url>https://repository.apache.org/snapshots/</url>
-    </repository>
-    <repository>
       <id>credentals</id>
       <name>software.r3.com-releases</name>
       <url>https://software.r3.com:443/artifactory/corda-dependencies</url>
