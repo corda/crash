@@ -147,7 +147,7 @@ public class SSHLifeCycle {
 
       //
       SshServer server = SshServer.setUpDefaultServer();
-      if (host != null) { server.setHost(host); }
+      server.setHost(host);
       server.setPort(port);
 
       if (this.idleTimeout > 0) {

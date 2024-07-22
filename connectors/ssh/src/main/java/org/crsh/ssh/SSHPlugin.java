@@ -50,7 +50,7 @@ public class SSHPlugin extends CRaSHPlugin<SSHPlugin> {
   private static final int SSH_SERVER_AUTH_DEFAULT_TIMEOUT = 10 * 60 * 1000;
 
   /** The SSH host. */
-  public static final PropertyDescriptor<String> SSH_HOST = PropertyDescriptor.create("ssh.host", (String)null, "The SSH host");
+  public static final PropertyDescriptor<String> SSH_HOST = PropertyDescriptor.create("ssh.host", "0.0.0.0", "The SSH host");
 
   /** The SSH port. */
   public static final PropertyDescriptor<Integer> SSH_PORT = PropertyDescriptor.create("ssh.port", 2000, "The SSH port");
@@ -94,7 +94,7 @@ public class SSHPlugin extends CRaSHPlugin<SSHPlugin> {
 
     String host = getContext().getProperty(SSH_HOST);
     if (host == null) {
-      log.log(Level.INFO, "Missing host configuration, using default host");
+      log.log(Level.FINE, "No host configuration, using default host");
     }
 
     Integer port = getContext().getProperty(SSH_PORT);
