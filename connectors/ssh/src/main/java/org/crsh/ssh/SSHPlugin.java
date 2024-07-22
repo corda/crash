@@ -99,7 +99,7 @@ public class SSHPlugin extends CRaSHPlugin<SSHPlugin> {
 
     Integer port = getContext().getProperty(SSH_PORT);
     if (port == null) {
-      log.log(Level.INFO, "Could not boot SSHD due to missing due to missing port configuration");
+      log.log(Level.INFO, "Could not boot SSHD due to missing port configuration");
       return;
     }
 
