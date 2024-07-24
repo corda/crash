@@ -22,12 +22,12 @@
   <parent>
     <artifactId>crash.doc</artifactId>
     <groupId>org.crashub</groupId>
-    <version>1.7.6-SNAPSHOT</version>
+    <version>1.7.7-RC02</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <artifactId>crash.doc.cookbook</artifactId>
   <packaging>jar</packaging>
-  <version>1.7.6-SNAPSHOT</version>
+  <version>1.7.7-RC02</version>
 
   <name>CRaSH Doc Cookbook</name>
   <description>The CRaSH cookbook documentation</description>
