@@ -257,13 +257,13 @@
       <dependency>
         <groupId>org.crashub</groupId>
         <artifactId>crash.plugins.mail</artifactId>
-        <version>1.3.3-SNAPSHOT</version>
+        <version>1.3.2</version>
         <type>jar</type>
       </dependency>
       <dependency>
         <groupId>org.crashub</groupId>
         <artifactId>crash.plugins.mail</artifactId>
-        <version>1.3.3-SNAPSHOT</version>
+        <version>1.3.2</version>
         <classifier>sources</classifier>
       </dependency>
 
@@ -271,13 +271,13 @@
       <dependency>
         <groupId>org.crashub</groupId>
         <artifactId>crash.plugins.cron</artifactId>
-        <version>1.3.3-SNAPSHOT</version>
+        <version>1.3.2</version>
         <type>jar</type>
       </dependency>
       <dependency>
         <groupId>org.crashub</groupId>
         <artifactId>crash.plugins.cron</artifactId>
-        <version>1.3.3-SNAPSHOT</version>
+        <version>1.3.2</version>
         <classifier>sources</classifier>
       </dependency>
 
