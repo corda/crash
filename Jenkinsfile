@@ -34,6 +34,9 @@ pipeline {
         ARTIFACTORY_CREDENTIALS = credentials('artifactory-credentials')
         CORDA_ARTIFACTORY_USERNAME = "${env.ARTIFACTORY_CREDENTIALS_USR}"
         CORDA_ARTIFACTORY_PASSWORD = "${env.ARTIFACTORY_CREDENTIALS_PSW}"
+        ARTIFACTORY_CREDENTIALS_2 = credentials('artifactory-credentials-2')
+        CORDA_ARTIFACTORY_USERNAME_2 = "${env.ARTIFACTORY_CREDENTIALS_2_USR}"
+        CORDA_ARTIFACTORY_PASSWORD_2 = "${env.ARTIFACTORY_CREDENTIALS_2_PSW}"
         JAVA_HOME = "/usr/lib/jvm/java-1.8.0-amazon-corretto"
         SNYK_TOKEN = credentials('c4-os-snyk-api-token-secret')
     }
@@ -85,6 +88,15 @@ pipeline {
             }
             steps {
                 sh "mvn deploy -B -s settings.xml -DskipTests"
+            }
+        }
+
+        stage('Deploy Release to artifactory 2 (software2.r3.com)') {
+            when {
+                expression { return isReleaseTag() }
+            }
+            steps {
+                sh "mvn deploy -B -s settings.xml -DskipTests -DaltDeploymentRepository=credentials2::default::https://software2.r3.com:443/artifactory/corda-dependencies"
             }
         }
     }

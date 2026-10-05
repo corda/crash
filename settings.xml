@@ -9,6 +9,11 @@
             <username>${env.CORDA_ARTIFACTORY_USERNAME}</username>
             <password>${env.CORDA_ARTIFACTORY_PASSWORD}</password>
         </server>
+        <server>
+            <id>credentials2</id>
+            <username>${env.CORDA_ARTIFACTORY_USERNAME_2}</username>
+            <password>${env.CORDA_ARTIFACTORY_PASSWORD_2}</password>
+        </server>
     </servers>
 
 </settings>
